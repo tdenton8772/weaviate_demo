@@ -44,10 +44,25 @@ try:
         collection = client.collections.create(
             name="Product",
             # vectorizer_config=wvcc.Configure.Vectorizer.text2vec_openai(), << started out here but hit 429
-            vectorizer_config=wvcc.Configure.Vectorizer.text2vec_transformers(), # switched to local transformer 
+            # vectorizer_config=wvcc.Configure.Vectorizer.text2vec_transformers(), # switched to local transformer 
+            vectorizer_config=[
+                wvcc.Configure.NamedVectors.text2vec_transformers(
+                    name="name_title",
+                    source_properties=["name_title"]
+                ),
+                wvcc.Configure.NamedVectors.text2vec_transformers(
+                    name="description",
+                    source_properties=["description"]
+                ),
+                wvcc.Configure.NamedVectors.text2vec_transformers(
+                    name="combined",
+                    source_properties=["name_title","description"]
+                )
+            ],
             generative_config=wvcc.Configure.Generative.openai(),
             properties=[
                 wvcc.Property(name="name_title", data_type=wvcc.DataType.TEXT),
+                wvcc.Property(name="description", data_type=wvcc.DataType.TEXT),
                 wvcc.Property(name="brand", data_type=wvcc.DataType.TEXT),
                 wvcc.Property(name="category", data_type=wvcc.DataType.TEXT),
                 wvcc.Property(name="sku", data_type=wvcc.DataType.TEXT),
@@ -101,7 +116,7 @@ try:
             for i in range(0, len(iterable), size):
                 yield iterable[i:i + size]
 
-        for i, chunk in enumerate(chunked(batch, 500)):
+        for i, chunk in enumerate(chunked(batch,300)):
             try:
                 product_collection.data.insert_many(chunk)
                 print(f"Inserted chunk {i + 1}, size: {len(chunk)}")

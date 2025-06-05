@@ -17,7 +17,7 @@ openai_client = OpenAI(
 )
 
 # CONFIG
-NUM_CLUSTERS = 20
+NUM_CLUSTERS = 50
 VECTOR_NAME = "product_vector"
 
 client = weaviate.connect_to_local(
@@ -38,7 +38,7 @@ try:
     for p in products:
         vec = p.vector
         if isinstance(vec, dict):
-            vec = vec['default']
+            vec = vec['combined']
         if vec:
             vectors.append(vec)
             uuids.append(p.uuid)
@@ -66,6 +66,7 @@ try:
 
         nearest = product_collection.query.near_vector(
             near_vector=centroid,
+            target_vector="combined",
             limit=5
         )
         sample_titles = [x.properties["name_title"] for x in nearest.objects]

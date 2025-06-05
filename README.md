@@ -2,6 +2,20 @@
 
 This demo shows how to use [Weaviate](https://weaviate.io/) with local vectorization to ingest an e-commerce catalog and auto-categorize products using unsupervised clustering. No predefined taxonomy required.
 
+## Prompt
+
+An ecommerce prospect “EcomMaxˮ is looking to improve product search across its catalog of millions of products.
+
+Tasks:
+- Design a tailored demo to present to EcomMax. The goal is to showcase how Weaviate can:
+    a. Power semantic search across the large product catalog
+    b. Enable auto categorization of products
+    c. Offer generative product descriptions or a recommendation engine
+
+Deliverables:
+1. A Discovery guide that includes no more than 10 questions you like to ask the customer before the call
+2. A slide deck for the presentation on why Weavaite would be the right solution for EcomMax
+
 ## Tech Stack
 
 - **Weaviate** (vector database)
