@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.venv/
+weviate-demo/
+
+# Data files
+weaviate_data/
+
+# Docker
+*.log
+*.pid
+*.db
+*.sock
+
+# VSCode and system
+.vscode/
+.DS_Store
