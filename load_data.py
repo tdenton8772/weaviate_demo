@@ -96,10 +96,21 @@ try:
             except Exception as e:
                 print(f"Skipped record {row.get('name_title')} due to error: {e}")
 
-    product_collection.data.insert_many(batch)
+        # blows up with grpc timeout with the full list of records. 
+        def chunked(iterable, size):
+            for i in range(0, len(iterable), size):
+                yield iterable[i:i + size]
+
+        for i, chunk in enumerate(chunked(batch, 500)):
+            try:
+                product_collection.data.insert_many(chunk)
+                print(f"Inserted chunk {i + 1}, size: {len(chunk)}")
+            except Exception as e:
+                print(f"Failed to insert chunk {i + 1}: {e}")
     print(f"Inserted {len(batch)} records.")
 
 finally:
     #apparently weaviate gets mad if you dont close the connection with the script exits
     client.close()
     print("Weaviate client connection closed.")
+
