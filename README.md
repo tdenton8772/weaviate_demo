@@ -16,6 +16,10 @@ Deliverables:
 1. A Discovery guide that includes no more than 10 questions you like to ask the customer before the call
 2. A slide deck for the presentation on why Weavaite would be the right solution for EcomMax
 
+## Presentation
+- **discovery.md** (This contains the doscovery questions)
+- **presentation.pdf** (This contains the actual presentation) --future
+
 ## Tech Stack
 
 - **Weaviate** (vector database)
