@@ -17,8 +17,8 @@ Deliverables:
 2. A slide deck for the presentation on why Weavaite would be the right solution for EcomMax
 
 ## Presentation
-- **discovery.md** (This contains the doscovery questions)
-- **presentation.pdf** (This contains the actual presentation) --future
+- **presentation/discovery.md** (This contains the discovery questions)
+- **presentation/presentation.pdf** (This contains the actual presentation) --future
 
 ## Tech Stack
 
